@@ -186,7 +186,6 @@ class DCGAN(object):
       print(" [*] Load SUCCESS")
     else:
       print(" [!] Load failed...")
-
     for epoch in xrange(config.epoch):
       if config.dataset == 'mnist':
         batch_idxs = min(len(self.data_X), config.train_size) // config.batch_size
@@ -277,7 +276,7 @@ class DCGAN(object):
           % (epoch, idx, batch_idxs,
             time.time() - start_time, errD_fake+errD_real, errG))
 
-        if np.mod(counter, 100) == 1:
+        if np.mod(counter, 3) == 1:
           if config.dataset == 'mnist':
             samples, d_loss, g_loss = self.sess.run(
               [self.sampler, self.d_loss, self.g_loss],
